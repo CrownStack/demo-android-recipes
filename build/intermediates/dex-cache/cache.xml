@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/crownstack/Code/demo-android-recipes/linkedin-sdk/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.0"
+        sha1="c3e76e29ed909c4de754facd6d496c8f07bfb46c">
+        <dex dex="/home/crownstack/Code/demo-android-recipes/app/build/intermediates/transforms/dex/debug/folders/1000/4/classes_0af6100f4315256ad76b8e901f58b9c07df3dd9c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/crownstack/Code/demo-android-recipes/linkedin-sdk/build/intermediates/bundles/default/libs/volley.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.0"
+        sha1="665cdcc34ce1b904988530a63132163e8fc1efba">
+        <dex dex="/home/crownstack/Code/demo-android-recipes/app/build/intermediates/transforms/dex/debug/folders/1000/8/volley_de4935be43bce40293c10ea9263b46063019e6b7/classes.dex" />
+    </item>
+
+</items>
