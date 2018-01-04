@@ -20,14 +20,13 @@ public class SampleActivity extends FragmentActivity implements FusedLocationLis
     private final int REQUEST_PERMISSION_CODE = 200;
     private FusedLocation mFusedLocation;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-
+        getLocation();
     }
 
     private void getLocation() {
@@ -52,10 +51,9 @@ public class SampleActivity extends FragmentActivity implements FusedLocationLis
         if (mFusedLocation != null) mFusedLocation.stopLocationUpdates();
     }
 
-
     @Override
     public void onLocationChanged(Location location) {
-
+        // when the location is changed.
     }
 
     @Override
