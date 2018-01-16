@@ -68,9 +68,7 @@ public class LocationActivity extends PermissionManager implements OnMapReadyCal
     }
 
     @Override
-    public void fusedLocationNotFound() {
-
-    }
+    public void fusedLocationNotFound() { }
 
     @Override
     protected void onDestroy() {
