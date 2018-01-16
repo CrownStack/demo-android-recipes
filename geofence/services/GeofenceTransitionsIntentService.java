@@ -12,19 +12,12 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
-
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import geofenceex.com.mylibrary.R;
 import geofenceex.com.mylibrary.activities.LocationActivity;
-
-/**
- * Created by ankur on 1/10/18.
- */
 
 public class GeofenceTransitionsIntentService extends IntentService {
 

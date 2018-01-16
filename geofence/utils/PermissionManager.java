@@ -8,11 +8,6 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
-
-/**
- * Created by ankur on 1/10/18.
- */
-
 public abstract class PermissionManager extends AppCompatActivity {
     private static final int REQUEST_PERMISSION_CODE = 101;
 

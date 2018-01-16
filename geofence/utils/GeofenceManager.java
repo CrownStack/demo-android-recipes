@@ -3,7 +3,6 @@ package geofenceex.com.mylibrary.utils;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.support.annotation.NonNull;
-
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.location.GeofencingRequest;
@@ -11,12 +10,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-
 import java.util.ArrayList;
-
-/**
- * Created by ankur on 1/10/18.
- */
 
 public class GeofenceManager {
     private static GeofenceManager geofenceManager;

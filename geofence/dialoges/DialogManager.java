@@ -9,10 +9,6 @@ import android.support.v7.app.AlertDialog;
 import geofenceex.com.mylibrary.R;
 import geofenceex.com.mylibrary.interfaces.IDialogCallback;
 
-/**
- * Created by ankur on 1/11/18.
- */
-
 public class DialogManager {
 
     private static DialogManager sDialogManager;

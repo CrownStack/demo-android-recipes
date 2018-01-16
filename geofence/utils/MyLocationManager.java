@@ -29,10 +29,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import geofenceex.com.mylibrary.interfaces.ILocationCallBack;
 
-/**
- * Created by ankur on 1/10/18.
- */
-
 public class MyLocationManager implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {

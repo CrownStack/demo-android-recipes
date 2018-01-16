@@ -4,10 +4,6 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.HashMap;
 
-/**
- * Created by ankur on 1/10/18.
- */
-
 public class Constants {
     public static final String GEOFENCE_ID = "STAN_UNI";
     public static final float GEOFENCE_RADIUS_IN_METERS = 30;
