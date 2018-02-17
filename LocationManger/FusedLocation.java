@@ -1,5 +1,3 @@
-package com.eqdepot.fusedLocation;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.IntentSender;
@@ -15,17 +13,17 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
-public class FusedLocation implements LocationListener, ConnectionCallbacks, OnConnectionFailedListener, ResultCallback<LocationSettingsResult> {
+public class FusedLocation implements LocationListener, ConnectionCallbacks, OnConnectionFailedListener {
 
     private Activity activity;
     private GoogleApiClient mGoogleApiClient;
@@ -115,33 +113,29 @@ public class FusedLocation implements LocationListener, ConnectionCallbacks, OnC
     private void checkLocationService() {
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
         builder.setAlwaysShow(true);
-        PendingResult<LocationSettingsResult> result = LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
-        result.setResultCallback(this);
+        Task<LocationSettingsResponse> result = LocationServices.getSettingsClient(activity).checkLocationSettings(builder.build());
+        result.addOnSuccessListener(activity, onSuccessListener);
+        result.addOnFailureListener(activity, onFailureListener);
     }
 
-    @Override
-    public void onResult(@NonNull LocationSettingsResult result) {
-
-        final Status status = result.getStatus();
-        switch (status.getStatusCode()) {
-            case LocationSettingsStatusCodes.SUCCESS:
-                if (locationListener != null)
-                    locationListener.onCheckedLocationSetting(true);
-                break;
-
-            case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                try {
-                    status.startResolutionForResult(activity, REQUEST_CHECK_SETTINGS);
-                } catch (IntentSender.SendIntentException e) {
-                }
-                if (locationListener != null)
-                    locationListener.onCheckedLocationSetting(false);
-                break;
-
-            case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                if (locationListener != null)
-                    locationListener.onCheckedLocationSetting(false);
-                break;
+    private OnSuccessListener<LocationSettingsResponse> onSuccessListener = new OnSuccessListener<LocationSettingsResponse>() {
+        @Override
+        public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+            startLocationUpdates();
         }
-    }
+    };
+
+    private OnFailureListener onFailureListener = new OnFailureListener() {
+        @Override
+        public void onFailure(@NonNull Exception e) {
+            if (e instanceof ResolvableApiException) {
+                try {
+                    ResolvableApiException resolvable = (ResolvableApiException) e;
+                    resolvable.startResolutionForResult(activity, REQUEST_CHECK_SETTINGS);
+                } catch (IntentSender.SendIntentException sendEx) {
+                    // Ignore the error.
+                }
+            }
+        }
+    };
 }
